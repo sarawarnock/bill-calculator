@@ -58,5 +58,48 @@ public class Calculator {
         //using booleans
         boolean leaveTip = true;
         boolean splitEvenly = true;
+
+        //total of meal cost by person
+        double personOneSubTotal = personOneAppetizerCost + personOneMainCost + personOneDessertCost + personOneDrinkCost;
+        double personTwoSubTotal = personTwoAppetizerCost + personTwoMainCost + personTwoDessertCost + personTwoDrinkCost;
+        double personThreeSubTotal = personThreeAppetizerCost + personThreeMainCost + personThreeDessertCost + personThreeDrinkCost;
+        double personFourSubTotal = personFourAppetizerCost + personFourMainCost + personFourDessertCost + personFourDrinkCost;
+
+        //calculate taxes per person
+        double taxAmount = taxPercent / 100;
+        double personOneTax = personOneSubTotal * taxAmount;
+        double personTwoTax = personTwoSubTotal * taxAmount;
+        double personThreeTax = personThreeSubTotal * taxAmount;
+        double personFourTax = personFourSubTotal * taxAmount;
+
+        //calculate tip per person
+        double tipAmount = tipPercent / 100;
+        double personOneTip = personOneSubTotal * tipAmount;
+        double personTwoTip = personTwoSubTotal * tipAmount;
+        double personThreeTip = personThreeSubTotal * tipAmount;
+        double personFourTip = personFourSubTotal * tipAmount;
+
+        //calculate the total cost of the meal, with tax and tip
+        double mealSubTotal = personOneSubTotal + personTwoSubTotal + personThreeSubTotal + personFourSubTotal;
+        double mealTax = mealSubTotal * taxAmount;
+        double mealTip = mealSubTotal * tipAmount;
+        double mealTotal = mealSubTotal + mealTax + mealTip;
+
+        double costPerPersonEven = mealTotal / 4;
+
+        double personOneTotal = personOneSubTotal + personOneTax + personOneTip;
+        double personTwoTotal = personTwoSubTotal + personTwoTax + personTwoTip;
+        double personThreeTotal = personThreeSubTotal + personThreeTax + personThreeTip;
+        double personFourTotal = personFourSubTotal + personFourTax + personFourTip;
+
+        //print it out
+        System.out.printf("The Bill Calculator\n");
+        System.out.printf("Total cost of meal: $%.2f including: $%.2f tax and $%.2f tip\n", mealTotal, mealTax, mealTip);
+        System.out.printf("Amount each person pays if split evenly in 4 is: $%.2f\n", costPerPersonEven);
+        System.out.printf("If not split evenly:\n");
+        System.out.printf("%s's meal costs: $%.2f\n",personOneName, personOneTotal);
+        System.out.printf("%s's meal costs: $%.2f\n", personTwoName, personTwoTotal);
+        System.out.printf("%s's meal costs: $%.2f\n", personThreeName, personThreeTotal);
+        System.out.printf("%s's meal costs: $%.2f\n", personFourName, personFourTotal);
     }
 }
