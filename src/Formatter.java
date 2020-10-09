@@ -9,6 +9,7 @@ public class Formatter {
         return result;
     }
 
+    //main method, calling the above method
     public static void main(String[] args) {
         Formatter stringFormatter = new Formatter();
 
